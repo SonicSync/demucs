@@ -268,20 +268,20 @@ class Separator:
         wav -= ref.mean()
         wav /= ref.std()
         out = apply_model(
-                self._model,
-                wav[None],
-                segment=self._segment,
-                shifts=self._shifts,
-                split=self._split,
-                overlap=self._overlap,
-                device=self._device,
-                num_workers=self._jobs,
-                callback=self._callback,
-                callback_arg=_replace_dict(
-                    self._callback_arg, ("audio_length", wav.shape[1])
-                ),
-                progress=self._progress,
-            )
+            self._model,
+            wav[None],
+            segment=self._segment,
+            shifts=self._shifts,
+            split=self._split,
+            overlap=self._overlap,
+            device=self._device,
+            num_workers=self._jobs,
+            callback=self._callback,
+            callback_arg=_replace_dict(
+                self._callback_arg, ("audio_length", wav.shape[1])
+            ),
+            progress=self._progress,
+        )
         if out is None:
             raise KeyboardInterrupt
         out *= ref.std()
